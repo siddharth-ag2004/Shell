@@ -14,7 +14,7 @@ void prompt() {
 
     // while(1)
     // {
-    strcpy(last_dir,cwd);
+    // strcpy(last_dir,cwd);
     // printf("last_dir:%s\n",last_dir);
     getcwd(cwd,sizeof(cwd));
     int cwd_len= strlen(cwd);

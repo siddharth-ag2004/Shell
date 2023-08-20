@@ -2,36 +2,37 @@
 
 void warp(const char* flag)
 {
-    // printf("pop\n");
-    if(strcmp(flag,"~")==0)
-    {
-        chdir(home_dir);
-        strcpy(cwd,home_dir);
-        printf("%s\n",home_dir);
-    }
-    if(strcmp(flag,".")==0)
-    {
-        chdir(cwd);
-        printf("%s",cwd);
-    }
-    if(strcmp(flag,"..")==0)
-    {
-        // printf("cwd : %s\n",cwd);
-        // printf("yess\n");
-        char parent_dir[PATH_MAX];
-        strcpy(parent_dir, cwd); 
-        char* parent_path = dirname(parent_dir);
+    char new_flag[PATH_MAX];
+    int idx = 0;
 
-        chdir(parent_path);
-        strcpy(cwd,parent_path);
-        printf("%s\n",cwd);
-        // printf("parentpath : %s\n",parent_path);
-    }
-    if(strcmp(flag,"-")==0)
+    for (int i= 0;flag[i]!='\0';i++) 
     {
-        chdir(last_dir);
-        strcpy(cwd,last_dir);
-        // printf("last: %s\n",last_dir);
+        if (flag[0] == '~') 
+        {
+            for (int j=0; home_dir[j]!='\0';j++) 
+            {
+                new_flag[idx++] = home_dir[j];
+            }
+        } 
+        else 
+        {
+            new_flag[idx++] = flag[i];
+        }
     }
+    if(new_flag[0]=='-')
+    {
+        chdir(last_dir);                    //error handling here
+        strcpy(last_dir,cwd);
+        getcwd(cwd, sizeof(cwd));
+        printf("%s\n",cwd);
+    }
+    else
+    {
+        strcpy(last_dir,cwd);
+        new_flag[idx] = '\0'; 
+        chdir(new_flag);                    //error handling here
+        getcwd(cwd, sizeof(cwd));
+        printf("%s\n",cwd);
+    } 
 }
 // chdir(home_dir);

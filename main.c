@@ -8,9 +8,10 @@ int main()
 {
     getcwd(cwd, sizeof(cwd));
     snprintf(home_dir, sizeof(home_dir), "%s", cwd);    
-    strcpy(cwd,"osn");
+    // strcpy(cwd,"osn");
     while (1)
     {
+        // strcpy(last_dir,cwd);
         prompt();
         char input[4096];
         fgets(input, 4096, stdin);
