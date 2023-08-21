@@ -10,6 +10,9 @@
 #include <linux/limits.h>
 #include<string.h>
 #include<libgen.h>
+#include<sys/wait.h>
+#include<fcntl.h>
+#include<sys/stat.h>
 
 #define MAX_TOKENS 100
 #define MAX_TOKEN_LENGTH 200

@@ -19,17 +19,17 @@ void prompt() {
     getcwd(cwd,sizeof(cwd));
     int cwd_len= strlen(cwd);
     if(strcmp(cwd,home_dir)==0)
-        printf("<%s@%s:~>\n", username->pw_name,user.nodename);
+        printf("<%s@%s:~> ", username->pw_name,user.nodename);
     else 
     {
         if(strstr(cwd, home_dir) == cwd) 
         {
             // printf("entered\n");
-            printf("<%s@%s:~%s>\n", username->pw_name, user.nodename, cwd + home_len);
+            printf("<%s@%s:~%s> ", username->pw_name, user.nodename, cwd + home_len);
         }
         else
         {
-            printf("<%s@%s: %s>\n", username->pw_name, user.nodename,cwd);
+            printf("<%s@%s: %s> ", username->pw_name, user.nodename,cwd);
         }
     }
     //     break;
