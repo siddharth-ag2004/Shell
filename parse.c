@@ -44,7 +44,7 @@ int isSubstring(char* s1, char* s2)
     return 0;
 }
 
-void pastevents(char** history_array,const char* flag,const char* process)
+void pastevents(char** history_array,const char* flag,const char* process,ListPtr list)
 {
     if(flag == NULL)
     {
@@ -66,11 +66,13 @@ void pastevents(char** history_array,const char* flag,const char* process)
         }
         // return NULL;
     }
-    // else
-    // {
-    //     int converted_process = atoi(process);
-    //     return history_array[(history_index+converted_process)%15];
-    // }
+    else
+    {
+        int converted_process = atoi(process);
+        // printf("%d\n",converted_process);
+        // printf("%s\n",history_array[(history_index-converted_process)%15]);
+        parse(history_array[(history_index-converted_process)%15],history_array,list);
+    }
 }
 
 void parse(char* input,char** history_array,ListPtr list)
@@ -183,7 +185,7 @@ void parse(char* input,char** history_array,ListPtr list)
                 //     warp(command[i]);
                 // }
                 // printf("%d\n",history_index);   
-                pastevents(history_array,command[1],command[2]);
+                pastevents(history_array,command[1],command[2],list);
             }
         }
 }

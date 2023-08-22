@@ -2,6 +2,6 @@
 #define __PARSE_H
 
 void parse(char* input,char** history_array,ListPtr list);
-void pastevents(char** history_array,const char* flag,const char* process);
+void pastevents(char** history_array,const char* flag,const char* process,ListPtr list);
 
 #endif
