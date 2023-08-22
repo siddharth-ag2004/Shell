@@ -23,4 +23,7 @@ extern char last_dir[PATH_MAX];
 
 #include "prompt.h"
 #include "warp.h"
+#include "pastevents.h"
+#include "list.h"
+#include "parse.h"
 #endif
