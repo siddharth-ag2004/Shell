@@ -24,8 +24,8 @@ extern int history_index;
 
 #include "prompt.h"
 #include "warp.h"
-// #include "pastevents.h"
 #include "list.h"
+#include "pastevents.h"
 #include "parse.h"
 
 #endif
