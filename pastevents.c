@@ -25,6 +25,6 @@ void pastevents(char** history_array,const char* flag,const char* process,ListPt
     else
     {
         int converted_process = atoi(process);
-        parse(history_array[(history_index-converted_process)%15],history_array,list);
+        parse(history_array[(history_index-converted_process+15)%15],history_array,list);
     }
 }

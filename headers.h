@@ -26,6 +26,7 @@ extern int history_index;
 #include "warp.h"
 #include "list.h"
 #include "pastevents.h"
+#include "proclore.h"
 #include "parse.h"
 
 #endif

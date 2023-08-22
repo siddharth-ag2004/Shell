@@ -17,6 +17,32 @@ int main()
     }
 
     history_index = 0;
+
+
+    FILE* file = fopen("history.txt", "r");
+    if (file == NULL) {
+        perror("Failed to open the file");
+        return 1;
+    }
+
+    // Read file line by line and store in history_array
+    char buffer[MAX_TOKEN_LENGTH];
+    while (history_index < 15 && fgets(buffer, sizeof(buffer), file) != NULL) 
+    {
+        size_t length = strlen(buffer);
+        if (length > 0 && buffer[length - 1] == '\n') 
+        {
+            buffer[length - 1] = '\0';
+        }
+
+        // Copy the buffer content to history_array
+        strcpy(history_array[history_index], buffer);
+
+        history_index++;
+    }
+    fclose(file);
+    history_index = 0;
+    
     // strcpy(cwd,"osn");
     while (1)
     {
@@ -51,6 +77,7 @@ int main()
 
         parse(input,history_array,list);
     }
+    // saveHistoryToFile("history.txt", history_array, history_index);
 
     return 0;
 }
