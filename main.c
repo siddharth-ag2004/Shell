@@ -3,7 +3,7 @@
 char home_dir[PATH_MAX];
 char cwd[PATH_MAX];
 char last_dir[PATH_MAX];
-
+int history_index;
 
 int main()
 {
@@ -16,7 +16,7 @@ int main()
         history_array[i] = (char*)malloc(sizeof(char)*MAX_TOKEN_LENGTH);
     }
 
-    int history_index = 0;
+    history_index = 0;
     // strcpy(cwd,"osn");
     while (1)
     {
@@ -49,7 +49,7 @@ int main()
         
         input[strlen(input)-1] = '\0';
 
-        parse(input,history_array,history_index,list);
+        parse(input,history_array,list);
     }
 
     return 0;

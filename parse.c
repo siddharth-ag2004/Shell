@@ -44,18 +44,19 @@ int isSubstring(char* s1, char* s2)
     return 0;
 }
 
-char* pastevents(char** history_array,int history_index,const char* flag,const char* process)
+void pastevents(char** history_array,const char* flag,const char* process)
 {
     if(flag == NULL)
     {
         for(int i=0;i<15;i++)
         {
+            // printf("entered\n");
             if(strcmp(history_array[(history_index+i)%15],"\0")!=0)
             {
                 printf("%s\n",history_array[(history_index+i)%15]);
             }
         }
-        return NULL;
+        // return NULL;
     }
     else if(strcmp(flag,"purge")==0)
     {
@@ -63,19 +64,20 @@ char* pastevents(char** history_array,int history_index,const char* flag,const c
         {
             strcpy(history_array[i],"\0");
         }
-        return NULL;
+        // return NULL;
     }
-    else
-    {
-        int converted_process = atoi(process);
-        return history_array[(history_index+converted_process)%15];
-    }
+    // else
+    // {
+    //     int converted_process = atoi(process);
+    //     return history_array[(history_index+converted_process)%15];
+    // }
 }
 
-void parse(char* input,char** history_array,int history_index,ListPtr list)
+void parse(char* input,char** history_array,ListPtr list)
 {
     if(!isSubstring("pastevents",input) && strcmp(input,history_array[(history_index+14)%15]))
         {
+            // printf("input: %s",input);
             strcpy(history_array[history_index%15],input);             //history
             history_index = (history_index+1)%15;
         }
@@ -181,7 +183,7 @@ void parse(char* input,char** history_array,int history_index,ListPtr list)
                 //     warp(command[i]);
                 // }
                 // printf("%d\n",history_index);   
-                pastevents(history_array,history_index,command[1],command[2]);
+                pastevents(history_array,command[1],command[2]);
             }
         }
 }

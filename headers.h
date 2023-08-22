@@ -20,10 +20,12 @@
 extern char home_dir[PATH_MAX];
 extern char cwd[PATH_MAX];
 extern char last_dir[PATH_MAX];
+extern int history_index;
 
 #include "prompt.h"
 #include "warp.h"
-#include "pastevents.h"
+// #include "pastevents.h"
 #include "list.h"
 #include "parse.h"
+
 #endif
