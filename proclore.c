@@ -32,10 +32,20 @@ void proclore(char* flag)
             {
                 if (strncmp(line, "State:", 6) == 0) 
                 {
-                    char status[8];
-                    sscanf(line + 7, "%s", status);
+                    const char *property = line + 7; 
+                    const char *status_end = strchr(property, ' ');
+                    if (status_end == NULL)
+                    {
+                        status_end = line + strlen(line);
+                    }
 
-                    printf("process status : %s\n", status);
+                    int status_length = status_end - property;
+                    char status[status_length + 1];
+
+                    strncpy(status, property, status_length);
+                    status[status_length] = '\0';
+
+                    printf("process status: %s\n", status);
                 }
                 if(strncmp(line, "VmSize:",7)==0) 
                 {
@@ -53,6 +63,18 @@ void proclore(char* flag)
         pid_t pgid = getpgid(pid);
         printf("Process Group : %d\n", pgid);
         printf("Virtual memory : %lu\n", vm_size);
-        // printf("Executable path : %s\n", file_path);
+        char executable_path[PATH_MAX];
+        snprintf(executable_path, sizeof(executable_path), "/proc/%d/exe", pid);
+        char resolved_path[PATH_MAX];
+        ssize_t len = readlink(executable_path, resolved_path, sizeof(resolved_path) - 1);
+        if (len != -1)
+        {
+            resolved_path[len] = '\0';
+            printf("Executable path: %s\n", resolved_path);
+        }
+        else
+        {
+            printf("Failed to read executable path.\n");
+        }
     
 }

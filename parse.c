@@ -48,7 +48,6 @@ void parse(char* input,char** history_array,ListPtr list)
 {
     if(!isSubstring("pastevents",input) && strcmp(input,history_array[(history_index+14)%15]))
     {
-        printf("input: %s",input);
         strcpy(history_array[history_index%15],input);             //history
         history_index = (history_index+1)%15;
         FILE* file = fopen("history.txt", "w");
@@ -155,12 +154,40 @@ void parse(char* input,char** history_array,ListPtr list)
         }
         else if(strcmp(command[0],"pastevents")==0)
         { 
-            printf("yes2\n");
             pastevents(history_array,command[1],command[2],list);
         }
         else if(strcmp(command[0],"proclore")==0)
         {
             proclore(command[1]);
+        }
+        else if(strcmp(command[0],"peek")==0)
+        {
+            if(command[1]==NULL)
+            {
+                peek(NULL,NULL,NULL);
+            }
+            else if(command[2]==NULL)
+            {
+                if(isflag(command[1]))
+                    peek(command[1],NULL,NULL);
+                else
+                    peek(NULL,NULL,command[1]);
+            }
+            else if(command[3]==NULL)
+            {
+                if(isflag(command[1]) && isflag(command[2]))
+                    peek(command[1],command[2],NULL);
+                else if(isflag(command[1]) && !isflag(command[2]))
+                    peek(command[1],NULL,command[2]);
+            }
+            else
+            {
+                peek(command[1],command[2],command[3]);
+            }
+        }
+        else
+        {
+            printf("Invalid command\n");
         }
     }
 }

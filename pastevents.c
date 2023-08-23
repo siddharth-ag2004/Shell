@@ -24,7 +24,7 @@ void pastevents(char** history_array,const char* flag,const char* process,ListPt
     }
     else
     {
-        int converted_process = atoi(process);
+        int converted_process = atoi(process);          //error handling if  >15
         parse(history_array[(history_index-converted_process+15)%15],history_array,list);
     }
 }

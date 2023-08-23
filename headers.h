@@ -13,6 +13,10 @@
 #include<sys/wait.h>
 #include<fcntl.h>
 #include<sys/stat.h>
+#include<ctype.h>
+#include<dirent.h>
+#include<time.h>
+#include<grp.h>
 
 #define MAX_TOKENS 100
 #define MAX_TOKEN_LENGTH 200
@@ -27,6 +31,7 @@ extern int history_index;
 #include "list.h"
 #include "pastevents.h"
 #include "proclore.h"
+#include "peek.h"
 #include "parse.h"
 
 #endif
