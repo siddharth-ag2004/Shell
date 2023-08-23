@@ -2,7 +2,7 @@
 
 int isflag(char* token)
 {
-    if(token[0]=='-')
+    if(token[0]=='-' && strlen(token)>=2)
         return 1;
     return 0;
 }
@@ -54,6 +54,15 @@ void peek(char* flag1 ,char* flag2 ,char* path)
         {
             path = ".";
         }
+        else if(path[0]=='-')
+        {
+            strcpy(path,last_dir);
+        }
+        else if(path[0]=='~')
+        {
+            strcpy(path,home_dir);
+        }
+
         DIR *dr = opendir(path);
         if(dr==NULL)
         {
@@ -88,6 +97,15 @@ void peek(char* flag1 ,char* flag2 ,char* path)
             {
                 path = ".";
             }
+            else if(path[0]=='-')
+            {
+                strcpy(path,last_dir);
+            }
+            else if(path[0]=='~')
+            {
+                strcpy(path,home_dir);
+            }
+
             DIR *dr = opendir(path);
             if(dr==NULL)
             {
@@ -125,6 +143,14 @@ void peek(char* flag1 ,char* flag2 ,char* path)
             if(path==NULL)
             {
                 path = ".";
+            }
+            else if(path[0]=='-')
+            {
+                strcpy(path,last_dir);
+            }
+            else if(path[0]=='~')
+            {
+                strcpy(path,home_dir);
             }
 
             DIR *dr = opendir(path);
