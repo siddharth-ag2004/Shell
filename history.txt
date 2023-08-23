@@ -1,15 +1,15 @@
- ls -l ;
+peek
+peek -l test
+peek 
+peek -l test
+peek
+peek -l test
+peek
+peek -l test
 peek -l
-ls -l ;
-peek -l
-ls -l ;
-peek -l
-ls -l ;
-peek -l
-ls -l ;
-peek -l
-peek -a
-peek -l
-peek -a
-peek -la
-peek -al
+peek -l test
+peek -l ./test
+warp /home
+warp ../../..
+vim &
+warp ../../..
