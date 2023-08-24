@@ -205,6 +205,10 @@ void peek(char* flag1 ,char* flag2 ,char* path)
                 printf("%s\n", store_strings[i]);
             }
         }
-    }       
+    }   
+    else
+    {
+        perror("Invalid flags\n");
+    }    
 
 }

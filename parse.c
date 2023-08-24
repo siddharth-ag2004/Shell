@@ -180,10 +180,55 @@ void parse(char* input,char** history_array,ListPtr list)
                 else if(isflag(command[1]) && !isflag(command[2]))
                     peek(command[1],NULL,command[2]);
             }
-            else
+            else if(command[4]==NULL)
             {
                 peek(command[1],command[2],command[3]);
             }
+            else
+            {
+                perror("Invalid flags!\n");
+            }
+        }
+        else if(strcmp(command[0],"seek")==0)
+        { 
+            if(!isflag(command[1]))
+            {
+                seek(NULL,NULL,command[1],command[2]);
+            }
+            else if(!isflag(command[2]))
+            {
+                if(command[1][1]=='d')
+                {
+                    seek(command[1],NULL,command[2],command[3]);
+                }
+                else if(command[1][1]=='f')
+                {
+                    seek(command[1],NULL,command[2],command[3]);
+                }
+                else if(command[1][1]=='e')
+                {
+                    seek(command[1],NULL,command[2],command[3]);
+                }
+            }
+            else if(isflag(command[1]) && isflag(command[2]))
+            {
+                if((command[1][1]=='d' && command[2][1]=='f') || (command[1][1]=='f' && command[2][1]=='d'))
+                {
+                    perror("Invalid flags!\n");
+                }
+                else
+                {
+                    if((command[1][1]=='d' || command[1][1]=='f'))
+                    {
+                        seek(command[1],command[2],command[3],command[4]);
+                    }
+                    else
+                    {
+                        seek(command[2],command[1],command[3],command[4]);
+                    }
+                }
+            }
+            
         }
         else
         {

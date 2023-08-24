@@ -1,15 +1,15 @@
-
-warp ..
-warp ~
-peek
-peek -
-warp ..
-peek -l
-warp ..
-peek -l test
-peek -la test
-peek -a -l test
-peel -l -a test
-peek -l -a test
-peek -l test
-peek -a test
+seek -f prompt
+seek -e -f history
+seek -f -e history
+seek history
+seek -f history
+seek history
+seek -e history
+seek history
+seek -f -e history
+seek -e history
+seek history
+seek -e hsitory
+seek -e history
+seek test
+seek -e test

@@ -32,6 +32,7 @@ extern int history_index;
 #include "pastevents.h"
 #include "proclore.h"
 #include "peek.h"
+#include "seek.h"
 #include "parse.h"
 
 #endif
