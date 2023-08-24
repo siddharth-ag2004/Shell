@@ -174,12 +174,11 @@ void peek(char* flag1 ,char* flag2 ,char* path)
             {
                 char* absolute_path_string = (char*)malloc(sizeof(char)*PATH_MAX); 
                 sprintf(absolute_path_string, "%s/%s/%s", cwd, path, store_strings[i]);
-                // printf("%s\n",cwd);
-                // permissions(absolute_path_string);
-                permissions(store_strings[i]);
+                permissions(absolute_path_string);
+                // permissions(store_strings[i]);
 
                 struct stat fileStat;
-                if (stat(store_strings[i], &fileStat) < 0) 
+                if (stat(absolute_path_string, &fileStat) < 0) 
                 {
                     perror("Error in stat");
                     return;

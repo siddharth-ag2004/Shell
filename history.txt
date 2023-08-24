@@ -1,15 +1,15 @@
-warp ../../..
-vim &
-warp ../../..
-warp ..
-peek
-peek -l -a
-peek -l ../../
-peek -l ../..
-warp ..
 
 warp ..
 warp ~
 peek
 peek -
 warp ..
+peek -l
+warp ..
+peek -l test
+peek -la test
+peek -a -l test
+peel -l -a test
+peek -l -a test
+peek -l test
+peek -a test
