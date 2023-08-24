@@ -1,5 +1,3 @@
-seek -f prompt
-seek -e -f history
 seek -f -e history
 seek history
 seek -f history
@@ -13,3 +11,5 @@ seek -e hsitory
 seek -e history
 seek test
 seek -e test
+seek -f -e check
+seek -e -d check

@@ -2,7 +2,7 @@
 
 int isflag(char* token)
 {
-    if(token[0]=='-' && strlen(token)>=2)
+    if(token[0]=='-' && (strlen(token)==2||(strcmp(token,"-la")==0)||(strcmp(token,"-al")==0)))
         return 1;
     return 0;
 }
