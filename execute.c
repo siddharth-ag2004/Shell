@@ -18,9 +18,11 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
         }
         index++;
         command[com_index] = NULL;
-
-        // printf("%s %s\n",command[0],command[1]);
-        // printf("%d %d\n",index,token_count);
+        if(com_index==0)
+        {
+            perror("syntax error");
+            return;
+        }
         if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0) && (strcmp(command[0],"proclore")!=0) 
         && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (index<=token_count) && (strcmp(tokens[index-1],";")==0))
         {

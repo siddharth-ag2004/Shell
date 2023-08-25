@@ -8,13 +8,15 @@ void insertSpaces(char *str)    //inserts spaces before and after ; and &
 
     for (int i = 0; i < len; i++) 
     {
-        if ((str[i] == ';' || str[i] == '&') && i - 1 >= 0 && str[i - 1] != ' ') {
+        if ((str[i]==';' || str[i]=='&') && i-1>=0 && str[i-1] != ' ') 
+        {
             newStr[j++] = ' ';
         }
         
         newStr[j++] = str[i];
 
-        if ((str[i] == ';' || str[i] == '&') && i + 1 < len && str[i + 1] != ' ') {
+        if ((str[i]==';' || str[i] == '&') && i+1<len && str[i+1]!=' ') 
+        {
             newStr[j++] = ' ';
         }
     }

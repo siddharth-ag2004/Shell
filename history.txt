@@ -1,15 +1,15 @@
-peek -k -f 
-peek -a
-peek -a -b -c -d
-peek -k -f
-peek -l -f
-seek -f -l
-seef -g
-see
-see pel
-seek -l
-peek -l -k
+;echo hi
+echo 1 ;;
+echo 1;;
+echo 1 ;;
+peek
 peek -l -a
-peek -al 
-seek -e his
-seek -f  proclore
+seek warp
+proclore
+pe
+ps
+sleep 10 &
+proclore 14752
+
+;echo 1;
+;

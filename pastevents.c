@@ -24,12 +24,16 @@ void pastevents(char** history_array,const char* flag,const char* process,ListPt
     }
     else if(strcmp(flag,"execute")==0)
     {
-        int converted_process = atoi(process);          //error handling if  >15
-        if (converted_process <= 15)
+        int converted_process = atoi(process);         
+        if (converted_process <= 15 && strcmp(history_array[(history_index-converted_process+15)%15],"\0")!=0)
         {
             char string_copy[PATH_MAX];
             strcpy(string_copy,history_array[(history_index-converted_process+15)%15]);
             parse(string_copy, history_array, list);
+        }
+        else
+        {
+            perror("Invalid process execution index");
         }
     }
 }

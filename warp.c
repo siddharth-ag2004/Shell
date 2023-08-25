@@ -23,7 +23,8 @@ void warp(const char* flag)
     {
         if(chdir(last_dir)==-1)                 
         {
-            perror("Unable to change directory");
+            perror("OLDPWD not set");
+            return;
         }
         strcpy(last_dir,cwd);
         getcwd(cwd, sizeof(cwd));
