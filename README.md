@@ -19,3 +19,5 @@
 8. In proclore, my shell is the only foreground process continuously running in foreground, any other process except for ./a.out will not print '+' sign.
 
 9. Exit command has not been handled yet as that is not a specification.
+
+10. peek - has been assumed to be a valid command and is equivalent to the ls of the previous directory.

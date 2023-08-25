@@ -1,15 +1,15 @@
-proclore
-pe
-ps
-sleep 10 &
-proclore 14752
-
-;echo 1;
-;
-sleep 3
-WARP ..
+warp check
+seek check
+seek checl
+seek check
+seek check check
+seek checl
+seek check
+seek warp
+seek checl
+seek check
+seek check check
 warp ..
-warp test
-warp ~
-warp test
+pwd
+warp -
 warp ..
