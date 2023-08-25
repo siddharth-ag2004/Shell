@@ -3,8 +3,9 @@
 char home_dir[PATH_MAX];
 char cwd[PATH_MAX];
 char last_dir[PATH_MAX];
+char commandline_input[MAX_TOKEN_LENGTH];
 int history_index;
-int bg_process_count=0;
+int time_count=0;
 
 int main()
 {
@@ -74,8 +75,21 @@ int main()
         fgets(input, 4096, stdin);
         
         input[strlen(input)-1] = '\0';
-
+        strcpy(commandline_input,input);
+        time_t initial_time;
+        time(&initial_time);
         parse(input,history_array,list);
+        time_t final_time;
+        time(&final_time);
+        if(final_time-initial_time<=2)
+        {
+            strcpy(commandline_input,"");
+            time_count=0;
+        }
+        else
+        {
+            time_count = (int)(final_time-initial_time);
+        }
     }
 
     return 0;

@@ -29,8 +29,9 @@
 extern char home_dir[PATH_MAX];
 extern char cwd[PATH_MAX];
 extern char last_dir[PATH_MAX];
+extern char commandline_input[MAX_TOKEN_LENGTH];
 extern int history_index;
-extern int bg_process_count;
+extern int time_count;
 
 #include "prompt.h"
 #include "warp.h"

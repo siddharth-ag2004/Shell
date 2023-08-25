@@ -1,15 +1,15 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
 peek -l -a
+warp ..
+time
+sleep 2
+sleep 3
+proclore
+peek -l -a
+sleep 2
+sleep 3
+sleep 1
+sleep 3 & echo 1
+
 warp ..
