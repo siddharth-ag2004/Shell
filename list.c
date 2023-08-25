@@ -20,3 +20,27 @@ void addNode(ListPtr list, int data,char* name)
     }
     temp->next = node;
 }
+
+void removeNode(ListPtr list, int data)
+{
+    ListPtr temp = list;
+    ListPtr prev = NULL;
+    while(temp != NULL)
+    {
+        if(temp->data == data)
+        {
+            if(prev == NULL)
+            {
+                list = temp->next;
+            }
+            else
+            {
+                prev->next = temp->next;
+            }
+            free(temp);
+            return;
+        }
+        prev = temp;
+        temp = temp->next;
+    }
+}

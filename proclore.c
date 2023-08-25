@@ -4,6 +4,7 @@ void proclore(char* flag)
 {
     char file_path[PATH_MAX];
     pid_t pid;
+    int out_flag=1;
     if(flag == NULL)
     {
         char default_path[PATH_MAX] = "/a.out";
@@ -14,6 +15,7 @@ void proclore(char* flag)
     else
     {
         pid = atoi(flag);
+        out_flag=0;
     }
         //PID
         printf("pid : %d\n", pid);
@@ -45,7 +47,7 @@ void proclore(char* flag)
                     strncpy(status, property, status_length);
                     status[status_length] = '\0';
 
-                    printf("process status: %s\n", status);
+                    printf("process status: %s%s\n", status, (out_flag == 1) ? "+" : "");
                 }
                 if(strncmp(line, "VmSize:",7)==0) 
                 {

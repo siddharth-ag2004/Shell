@@ -4,6 +4,7 @@ char home_dir[PATH_MAX];
 char cwd[PATH_MAX];
 char last_dir[PATH_MAX];
 int history_index;
+int bg_process_count=0;
 
 int main()
 {
@@ -64,6 +65,7 @@ int main()
             {
                 // printf("Process %d exited normally\n",temp->data);
                 printf("%s exited normally (%d)\n",temp->name,temp->data);
+                removeNode(list,temp->data);
                 temp = temp->next;
             }
         }

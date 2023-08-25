@@ -1,15 +1,15 @@
-peek
-peek test
-peek -al 
-seek test
-seek check test
-seek warp
-seek .c
+echo 26
+echo 2 &
+
+echo 
+
+pastevennts
+ 
+
+pastevetns
+
+ 
+echo b
+peek 
+peek -l
 seek make
-seek vs
-seek .vs
-seek ME
-seek READ
-seek ME
-peek -la
-seek -e histo

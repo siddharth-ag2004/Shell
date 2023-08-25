@@ -21,7 +21,10 @@ void warp(const char* flag)
     }
     if(new_flag[0]=='-')
     {
-        chdir(last_dir);                    //error handling here
+        if(chdir(last_dir)==-1)                 
+        {
+            perror("Unable to change directory");
+        }
         strcpy(last_dir,cwd);
         getcwd(cwd, sizeof(cwd));
         printf("%s\n",cwd);
@@ -30,7 +33,10 @@ void warp(const char* flag)
     {
         strcpy(last_dir,cwd);
         new_flag[idx] = '\0'; 
-        chdir(new_flag);                    //error handling here
+        if (chdir(new_flag) == -1)               
+        {
+            perror("Unable to change directory");
+        }
         getcwd(cwd, sizeof(cwd));
         printf("%s\n",cwd);
     } 

@@ -30,6 +30,7 @@ extern char home_dir[PATH_MAX];
 extern char cwd[PATH_MAX];
 extern char last_dir[PATH_MAX];
 extern int history_index;
+extern int bg_process_count;
 
 #include "prompt.h"
 #include "warp.h"
