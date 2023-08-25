@@ -80,10 +80,26 @@ void peek(char* flag1 ,char* flag2 ,char* path)
         }
 
         qsort(store_strings,idx,sizeof(char*),cmpf_string);
-
+        
         for(int i=0;i<idx;i++)
         {
-            printf("%s\n",store_strings[i]);
+            char* absolute_path_string = (char*)malloc(sizeof(char)*PATH_MAX); 
+            sprintf(absolute_path_string, "%s/%s/%s", cwd, path, store_strings[i]);
+            struct stat fileStat;
+            if (stat(absolute_path_string, &fileStat) < 0) 
+            {
+                perror("Error in stat");
+                return;
+            }
+
+            if(S_ISDIR(fileStat.st_mode))
+                    printf(BLUE "%s\n" RESET, store_strings[i]);
+            else if(fileStat.st_mode & S_IXUSR)
+                printf(GREEN "%s\n" RESET, store_strings[i]);
+            else if(S_ISREG(fileStat.st_mode))
+                printf(WHITE "%s\n" RESET, store_strings[i]);
+            else
+                printf("%s\n", store_strings[i]);  
         }
 
         closedir(dr);
@@ -123,7 +139,23 @@ void peek(char* flag1 ,char* flag2 ,char* path)
 
             for(int i=0;i<idx;i++)
             {
-                printf("%s\n",store_strings[i]);
+                char* absolute_path_string = (char*)malloc(sizeof(char)*PATH_MAX); 
+                sprintf(absolute_path_string, "%s/%s/%s", cwd, path, store_strings[i]);
+                struct stat fileStat;
+                if (stat(absolute_path_string, &fileStat) < 0) 
+                {
+                    perror("Error in stat");
+                    return;
+                }
+
+                if(S_ISDIR(fileStat.st_mode))
+                        printf(BLUE "%s\n" RESET, store_strings[i]);
+                else if(fileStat.st_mode & S_IXUSR)
+                    printf(GREEN "%s\n" RESET, store_strings[i]);
+                else if(S_ISREG(fileStat.st_mode))
+                    printf(WHITE "%s\n" RESET, store_strings[i]);
+                else
+                    printf("%s\n", store_strings[i]); 
             }
 
             closedir(dr);
@@ -201,8 +233,14 @@ void peek(char* flag1 ,char* flag2 ,char* path)
                 char month[4], time[9] , day[10];
                 sscanf(timeStr, "%s %s %d %5s %d",day,month,&date, time,&year);
                 printf("%s %d %s\t",month,date,time);
-                
-                printf("%s\n", store_strings[i]);
+                if(S_ISDIR(fileStat.st_mode))
+                    printf(BLUE "%s\n" RESET, store_strings[i]);
+                else if(fileStat.st_mode & S_IXUSR)
+                    printf(GREEN "%s\n" RESET, store_strings[i]);
+                else if(S_ISREG(fileStat.st_mode))
+                    printf(WHITE "%s\n" RESET, store_strings[i]);
+                else
+                    printf("%s\n", store_strings[i]);   
             }
         }
     }   

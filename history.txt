@@ -1,15 +1,15 @@
-seek -f -e history
-seek history
-seek -f history
-seek history
-seek -e history
-seek history
-seek -f -e history
-seek -e history
-seek history
-seek -e hsitory
-seek -e history
+peek
+peek test
+peek -al 
 seek test
-seek -e test
-seek -f -e check
-seek -e -d check
+seek check test
+seek warp
+seek .c
+seek make
+seek vs
+seek .vs
+seek ME
+seek READ
+seek ME
+peek -la
+seek -e histo

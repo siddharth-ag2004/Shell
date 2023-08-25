@@ -25,7 +25,6 @@ int main()
         return 1;
     }
 
-    // Read file line by line and store in history_array
     char buffer[MAX_TOKEN_LENGTH];
     while (history_index < 15 && fgets(buffer, sizeof(buffer), file) != NULL) 
     {
@@ -35,7 +34,6 @@ int main()
             buffer[length - 1] = '\0';
         }
 
-        // Copy the buffer content to history_array
         strcpy(history_array[history_index], buffer);
 
         history_index++;
@@ -60,13 +58,12 @@ int main()
             }
             else if(ret==-1)
             {
-                // perror("waitpid");
                 temp = temp->next;
             }
             else
             {
                 // printf("Process %d exited normally\n",temp->data);
-                printf("%s with pid %d exited normally\n",temp->name,temp->data);
+                printf("%s exited normally (%d)\n",temp->name,temp->data);
                 temp = temp->next;
             }
         }
@@ -77,7 +74,6 @@ int main()
 
         parse(input,history_array,list);
     }
-    // saveHistoryToFile("history.txt", history_array, history_index);
 
     return 0;
 }

@@ -3,30 +3,43 @@
 void insertSpaces(char *str)    //inserts spaces before and after ; and &
 {
     int len = strlen(str);
-    char newStr[2*len];
+    char newStr[3*len];  // Increased size to accommodate additional spaces
     int j = 0;
 
-    for (int i=0; i<len;i++) 
+    for (int i = 0; i < len; i++) 
     {
+        if ((str[i] == ';' || str[i] == '&') && i - 1 >= 0 && str[i - 1] != ' ') {
+            newStr[j++] = ' ';
+        }
+        
         newStr[j++] = str[i];
-        if ((str[i] == ';' || str[i] == '&') && i+1<len && str[i+1] != ' ') {
+
+        if ((str[i] == ';' || str[i] == '&') && i + 1 < len && str[i + 1] != ' ') {
             newStr[j++] = ' ';
         }
     }
     newStr[j] = '\0';
-    strcpy(str, newStr); // Copy the modified string back to the original string
+    strcpy(str, newStr);
 }
 
-// int insertSemicolonIfNeeded(char** token) {
-//     int len = strlen(token);
-//     if (len>0 && (strcmp(token[len-1],";")!=0 && strcmp(token[len-1],"&")!=0)) 
-//     {
-//         printf("yes\n");
-//         strcat(token, ";");
-//         return 1;
-//     }
-//     return 0;
-// }
+void add_semicolon_at_end(char *input) 
+{
+    int len = strlen(input);
+
+
+    for (int i = len - 1; i >= 0; i--) 
+    {
+        if (input[i] != ' ' && input[i] != '\t' && input[i] != '\0' && input[i] != '\n') 
+        {
+            if (input[i] != ';' && input[i] != '&') 
+            {
+                strcat(input, " ;");
+            }
+            break;
+        }
+    }
+}
+
 
 int isSubstring(char* s1, char* s2) 
 {
@@ -59,9 +72,15 @@ void parse(char* input,char** history_array,ListPtr list)
     }
     
     insertSpaces(input);
+    add_semicolon_at_end(input);
 
-    char *delimiters = " \t\v\f\r";
-    char *tokens[MAX_TOKENS];
+    char* delimiters = " \t\v\f\r";
+    char** tokens = (char**)malloc(sizeof(char*)*MAX_TOKENS);
+    for(int i=0;i<MAX_TOKENS;i++)
+    {
+        tokens[i] = (char*)malloc(sizeof(char)*MAX_TOKEN_LENGTH);
+    }
+
     int token_count = 0;
     
     char *token = strtok(input, delimiters);
@@ -70,19 +89,6 @@ void parse(char* input,char** history_array,ListPtr list)
         tokens[token_count++] = token;
         token = strtok(NULL, delimiters);
     }
-    
-    // if (token_count > 0) 
-    // {
-    //     if(insertSemicolonIfNeeded(tokens))          //if ending is not semicolon
-    //     {
-    //         // printf("%s",)
-    //     }
-    // }
-
-    // for(int i=0;i<token_count;i++)
-    // {
-    //     printf("%s\n",tokens[i]);
-    // }
     
     int index = 0;
     // printf("%d\n",token_count);
@@ -104,7 +110,8 @@ void parse(char* input,char** history_array,ListPtr list)
 
         // printf("%s %s\n",command[0],command[1]);
         // printf("%d %d\n",index,token_count);
-        if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0) && (strcmp(command[0],"proclore")!=0) && (index<=token_count) && (strcmp(tokens[index-1],";")==0))
+        if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0) && (strcmp(command[0],"proclore")!=0) 
+        && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (index<=token_count) && (strcmp(tokens[index-1],";")==0))
         {
             int child = fork();
             if(child==0)
@@ -122,7 +129,8 @@ void parse(char* input,char** history_array,ListPtr list)
             }
             // execvp(command[0],command);
         }
-        else if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0)  && (strcmp(command[0],"proclore")!=0) && (index<=token_count) && (strcmp(tokens[index-1],"&")==0))
+        else if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0)  && (strcmp(command[0],"proclore")!=0)
+        && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (index<=token_count) && (strcmp(tokens[index-1],"&")==0))
         {
             int child = fork();
             if(child==0)
@@ -136,6 +144,7 @@ void parse(char* input,char** history_array,ListPtr list)
             }
             else
             {
+                printf("[%d]\n",child);
                 addNode(list,child,command[0]);
                 // continue;
             }

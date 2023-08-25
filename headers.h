@@ -21,6 +21,11 @@
 #define MAX_TOKENS 100
 #define MAX_TOKEN_LENGTH 200
 
+#define WHITE "\x1b[37m"
+#define BLUE "\x1b[34m"
+#define RESET "\x1b[0m"
+#define GREEN "\x1b[32m"
+
 extern char home_dir[PATH_MAX];
 extern char cwd[PATH_MAX];
 extern char last_dir[PATH_MAX];

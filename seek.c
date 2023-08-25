@@ -28,12 +28,18 @@ void seek_rec(char* flag1, char* flag2, char* target, char* path,int* found)
                 continue;
             }
 
-            if(isSubstring(target, rec_d->d_name))
+            // if(isSubstring(target, rec_d->d_name))
+            if(strncmp(target, rec_d->d_name,strlen(target))==0)
             {
                 // printf("1");
                 if((flag1 == NULL || (flag1[1] == 'f' && S_ISREG(entry_stat.st_mode)) || (flag1[1] == 'd' && S_ISDIR(entry_stat.st_mode))))
                 {
-                    printf("%s/%s\n", path, rec_d->d_name);
+                    if(S_ISDIR(entry_stat.st_mode))
+                        printf(BLUE "%s/%s\n" RESET, path, rec_d->d_name);
+                    else if(S_ISREG(entry_stat.st_mode))
+                        printf(GREEN "%s/%s\n" RESET, path, rec_d->d_name);
+                    else
+                        printf("%s/%s\n", path, rec_d->d_name);                    
                     sprintf(found_file,"%s/%s", path, rec_d->d_name);
                     (*found)++;
                 }
@@ -83,11 +89,16 @@ void seek(char* flag1, char* flag2, char* target, char* path)
             continue;
         }
 
-        if (isSubstring(target, d->d_name))
+        if (strncmp(target, d->d_name,strlen(target))==0)
         {
             if((flag1 == NULL || flag1[1]=='e' || (flag1[1] == 'f' && S_ISREG(entry_stat.st_mode)) || (flag1[1] == 'd' && S_ISDIR(entry_stat.st_mode))))
             {
-                printf("./%s\n", d->d_name);
+                if(S_ISDIR(entry_stat.st_mode))
+                    printf(BLUE "./%s\n" RESET, d->d_name);
+                else if(S_ISREG(entry_stat.st_mode))
+                    printf(GREEN "%s\n" RESET, d->d_name);
+                else
+                    printf("./%s\n", d->d_name);
                 sprintf(found_file,"./%s",d->d_name);
                 found++;
             }
