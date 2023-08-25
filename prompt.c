@@ -15,25 +15,25 @@ void prompt() {
     if(strcmp(cwd,home_dir)==0)
     {
         if(time_count==0)
-            printf("<%s@%s:~> ", username->pw_name,user.nodename);
+            printf(GREEN "<%s@%s:~> " RESET, username->pw_name,user.nodename);
         else
-            printf("<%s@%s:~ %s : %ds> ", username->pw_name,user.nodename,commandline_input,time_count);
+            printf(GREEN "<%s@%s:~ %s%s : %ds> " RESET, username->pw_name,user.nodename,WHITE,commandline_input,time_count);
     }
     else 
     {
         if(strstr(cwd, home_dir) == cwd) 
         {
             if(time_count==0)
-                printf("<%s@%s:~%s> ", username->pw_name, user.nodename, cwd + home_len);
+                printf(GREEN "<%s@%s:%s~%s> " RESET, username->pw_name, user.nodename,BLUE, cwd + home_len);
             else
-                printf("<%s@%s:~%s %s : %ds> ", username->pw_name, user.nodename, cwd + home_len,commandline_input,time_count);
+                printf(GREEN "<%s@%s:%s~%s %s%s : %ds> " RESET, username->pw_name, user.nodename,BLUE, cwd + home_len,WHITE,commandline_input,time_count);
         }
         else
         {
             if(time_count==0)
-                printf("<%s@%s: %s> ", username->pw_name, user.nodename,cwd);
+                printf(GREEN "<%s@%s%s: %s> " RESET, username->pw_name, user.nodename,BLUE,cwd);
             else
-                printf("<%s@%s: %s %s : %ds> ", username->pw_name, user.nodename,cwd,commandline_input,time_count);
+                printf(GREEN "<%s@%s:%s %s %s%s : %ds> ", username->pw_name, user.nodename,BLUE,cwd,WHITE,commandline_input,time_count);
         }
     }
     //     break;
