@@ -1,15 +1,15 @@
-exit 
-exit
-exit 
-exit ;
-peek
-exit
-echo "hello">out.txt
-echo 1 ;;
-echo ";"
-warp .. - ..
-seek
-peek
-peke
-peek
+
+
+
+
+
+
+
+
+
+
+
+
+
+peek -l -a
 warp ..

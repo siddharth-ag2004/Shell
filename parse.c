@@ -59,7 +59,7 @@ int isSubstring(char* s1, char* s2)
 
 void parse(char* input,char** history_array,ListPtr list)
 {
-    if((!isSubstring("pastevents",input) || isSubstring("pastevents",input) && isSubstring("execute",input))&& strcmp(input,history_array[(history_index+14)%15]))
+    if(!isSubstring("pastevents",input) && strcmp(input,history_array[(history_index+14)%15]))
     {
         strcpy(history_array[history_index%15],input);             //history
         history_index = (history_index+1)%15;
@@ -73,7 +73,6 @@ void parse(char* input,char** history_array,ListPtr list)
     
     insertSpaces(input);
     add_semicolon_at_end(input);
-
     char* delimiters = " \t\v\f\r";
     char** tokens = (char**)malloc(sizeof(char*)*MAX_TOKENS);
     for(int i=0;i<MAX_TOKENS;i++)

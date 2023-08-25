@@ -134,7 +134,7 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             {
                 if((command[1][1]=='d' && command[2][1]=='f') || (command[1][1]=='f' && command[2][1]=='d'))
                 {
-                    perror("Invalid flags!\n");
+                    perror("Invalid flags!");
                 }
                 else
                 {

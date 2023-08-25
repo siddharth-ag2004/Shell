@@ -22,51 +22,14 @@ void pastevents(char** history_array,const char* flag,const char* process,ListPt
         }
         // return NULL;
     }
-    else
+    else if(strcmp(flag,"execute")==0)
     {
         int converted_process = atoi(process);          //error handling if  >15
         if (converted_process <= 15)
         {
-            // Calculate the index of the line to modify
-            int target_index = (history_index - converted_process + 15) % 15;
-
-            // Read history.txt
-            FILE* history_file = fopen("history.txt", "r+");
-            if (history_file == NULL)
-            {
-                perror("Error opening history file");
-                return;
-            }
-
-            // // Find the line to modify
-            char line[1000]; // Adjust size accordingly
-            for (int i = 0; i <= history_index; i++)
-            {
-                if (fgets(line, sizeof(line), history_file) == NULL)
-                {
-                    perror("Error reading history file");
-                    fclose(history_file);
-                    return;
-                }
-            }
-
-            char pattern[100];
-            snprintf(pattern, sizeof(pattern), "pastevents execute %s", process);
-
-            char* pattern_occurrence = strstr(line, pattern);
-
-            if (pattern_occurrence)
-            {
-                strcpy(pattern_occurrence, line);
-            }
-
-            // Rewind the file and write the modified content
-            fseek(history_file, -strlen(line), SEEK_CUR);
-            fprintf(history_file, "%s", line);
-            fclose(history_file);
-
-            // Your parsing logic here
-            parse(history_array[(history_index-converted_process+15)%15], history_array, list);
+            char string_copy[PATH_MAX];
+            strcpy(string_copy,history_array[(history_index-converted_process+15)%15]);
+            parse(string_copy, history_array, list);
         }
     }
 }
