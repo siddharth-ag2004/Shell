@@ -2,6 +2,13 @@
 
 char found_file[PATH_MAX];
 
+int is_seek_flag(char* token)
+{
+    if(token[0]=='-' && ((strcmp(token,"-f")==0) || (strcmp(token,"-d")==0)||(strcmp(token,"-e")==0)))
+        return 1;
+    return 0;
+}
+
 void seek_rec(char* flag1, char* flag2, char* target, char* path,int* found)
 {
     struct dirent *rec_d;

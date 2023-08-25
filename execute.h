@@ -7,7 +7,8 @@ void pastevents(char** history_array,const char* flag,const char* process,ListPt
 void proclore(char* flag);
 void peek(char* flag1,char* flag2,char* path);
 void seek(char* flag1, char* flag2,char* target,char* path);
-int isflag(char* token);
+int is_peek_flag(char* token);
+int is_seek_flag(char* token);
 int isSubstring(char* s1, char* s2);
 
 

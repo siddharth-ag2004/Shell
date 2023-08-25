@@ -28,7 +28,7 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             if(child==0)
             {
                 execvp(command[0],command);
-                printf("Invalid command\n");
+                perror("Invalid command");
                 return;
             }
             else if(child == -1)
@@ -49,7 +49,7 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             if(child==0)
             {
                 execvp(command[0],command);
-                printf("Invalid command\n");
+                perror("Invalid command");
                 return;
             }
             else if(child == -1)
@@ -91,34 +91,35 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             }
             else if(command[2]==NULL)
             {
-                if(isflag(command[1]))
+                if(is_peek_flag(command[1]))
                     peek(command[1],NULL,NULL);
                 else
                     peek(NULL,NULL,command[1]);
             }
             else if(command[3]==NULL)
             {
-                if(isflag(command[1]) && isflag(command[2]))
+                if(is_peek_flag(command[1]) && is_peek_flag(command[2]))
                     peek(command[1],command[2],NULL);
-                else if(isflag(command[1]) && !isflag(command[2]))
+                else if(is_peek_flag(command[1]) && !is_peek_flag(command[2]))
                     peek(command[1],NULL,command[2]);
             }
             else if(command[4]==NULL)
             {
-                peek(command[1],command[2],command[3]);
+                if(is_peek_flag(command[1]) && is_peek_flag(command[2]))
+                    peek(command[1],command[2],command[3]);
             }
             else
             {
-                perror("Invalid flags!\n");
+                perror("Invalid flags!");
             }
         }
         else if(strcmp(command[0],"seek")==0)
         { 
-            if(!isflag(command[1]))
+            if(!is_seek_flag(command[1]))
             {
                 seek(NULL,NULL,command[1],command[2]);
             }
-            else if(!isflag(command[2]))
+            else if(!is_seek_flag(command[2]))
             {
                 if(command[1][1]=='d')
                 {
@@ -133,7 +134,7 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
                     seek(command[1],NULL,command[2],command[3]);
                 }
             }
-            else if(isflag(command[1]) && isflag(command[2]))
+            else if(is_seek_flag(command[1]) && is_seek_flag(command[2]))
             {
                 if((command[1][1]=='d' && command[2][1]=='f') || (command[1][1]=='f' && command[2][1]=='d'))
                 {
@@ -155,7 +156,7 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
         }
         else
         {
-            printf("Invalid command\n");
+            perror("Invalid command");
         }
     }
 }

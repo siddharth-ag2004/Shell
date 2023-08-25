@@ -37,8 +37,11 @@ void warp(const char* flag)
         {
             perror("Unable to change directory");
         }
-        getcwd(cwd, sizeof(cwd));
-        printf("%s\n",cwd);
+        else
+        {
+            getcwd(cwd, sizeof(cwd));
+            printf("%s\n",cwd);
+        }
     } 
 }
 // chdir(home_dir);

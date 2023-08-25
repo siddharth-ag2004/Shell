@@ -27,11 +27,11 @@ void add_semicolon_at_end(char *input)
     int len = strlen(input);
 
 
-    for (int i = len - 1; i >= 0; i--) 
+    for(int i= len-1; i>= 0;i--) 
     {
-        if (input[i] != ' ' && input[i] != '\t' && input[i] != '\0' && input[i] != '\n') 
+        if(input[i] != ' ' && input[i]!='\t' && input[i]!='\0' && input[i]!='\n') 
         {
-            if (input[i] != ';' && input[i] != '&') 
+            if (input[i] != ';' && input[i]!= '&') 
             {
                 strcat(input, " ;");
             }

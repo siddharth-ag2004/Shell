@@ -1,15 +1,15 @@
-proclore
+peek -k -f 
+peek -a
+peek -a -b -c -d
+peek -k -f
+peek -l -f
+seek -f -l
+seef -g
+see
+see pel
+seek -l
+peek -l -k
 peek -l -a
-sleep 2
-sleep 3
-sleep 1
-sleep 3 & echo 1
-
-warp ..
-peek -la
-warp ..
-ehco 1
-ehovh
-ehco
-sleeeep 5 &
-
+peek -al 
+seek -e his
+seek -f  proclore

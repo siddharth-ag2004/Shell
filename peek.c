@@ -1,8 +1,8 @@
 #include "headers.h"
 
-int isflag(char* token)
+int is_peek_flag(char* token)
 {
-    if(token[0]=='-' && (strlen(token)==2||(strcmp(token,"-la")==0)||(strcmp(token,"-al")==0)))
+    if(token[0]=='-' && ((strcmp(token,"-l")==0) || (strcmp(token,"-a")==0)||(strcmp(token,"-la")==0)||(strcmp(token,"-al")==0)))
         return 1;
     return 0;
 }
