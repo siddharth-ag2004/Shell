@@ -28,6 +28,8 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             if(child==0)
             {
                 execvp(command[0],command);
+                printf("Invalid command\n");
+                return;
             }
             else if(child == -1)
             {
@@ -47,7 +49,8 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             if(child==0)
             {
                 execvp(command[0],command);
-                // printf("Sleep exited normally (%d)\n",getpid());
+                printf("Invalid command\n");
+                return;
             }
             else if(child == -1)
             {
