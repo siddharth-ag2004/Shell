@@ -21,7 +21,8 @@ int main()
 
 
     FILE* file = fopen("history.txt", "r");
-    if (file == NULL) {
+    if (file == NULL) 
+    {
         perror("Failed to open the file");
         return 1;
     }

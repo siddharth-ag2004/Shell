@@ -50,16 +50,13 @@ void pastevents(char** history_array,const char* flag,const char* process,ListPt
                 }
             }
 
-            // Construct the pattern to search for
             char pattern[100];
             snprintf(pattern, sizeof(pattern), "pastevents execute %s", process);
 
-            // Search for the pattern in the line
             char* pattern_occurrence = strstr(line, pattern);
 
             if (pattern_occurrence)
             {
-                // Replace the pattern with the line
                 strcpy(pattern_occurrence, line);
             }
 

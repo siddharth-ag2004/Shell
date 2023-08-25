@@ -1,15 +1,15 @@
-echo 26
-echo 2 &
-
-echo 
-
-pastevennts
- 
-
-pastevetns
-
- 
-echo b
-peek 
-peek -l
-seek make
+exit 
+exit
+exit 
+exit ;
+peek
+exit
+echo "hello">out.txt
+echo 1 ;;
+echo ";"
+warp .. - ..
+seek
+peek
+peke
+peek
+warp ..
