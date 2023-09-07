@@ -26,6 +26,24 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
         if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0) && (strcmp(command[0],"proclore")!=0) 
         && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (index<=token_count) && (strcmp(tokens[index-1],";")==0))
         {
+            if(com_index>=3)
+            {
+                if(strcmp(command[com_index-2],">") == 0)
+                {
+                    redirect(command,com_index,1,history_array,list);
+                    return ;
+                }
+                if(strcmp(command[com_index-2],">>") == 0)
+                {
+                    redirect(command,com_index,2,history_array,list);
+                    return ;
+                }
+                if(strcmp(command[com_index-2],"<") == 0)
+                {
+                    redirect(command,com_index,3,history_array,list);
+                    return ;
+                }
+            }
             int child = fork();
             if(child==0)
             {

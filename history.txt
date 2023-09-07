@@ -1,6 +1,3 @@
-warp check
-seek check
-seek checl
 seek check
 seek check check
 seek checl
@@ -13,3 +10,6 @@ warp ..
 pwd
 warp -
 warp ..
+ls -l > test.txt
+echo hi >> test.txt
+wc < history.txt >> test.txt
