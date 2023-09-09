@@ -61,6 +61,7 @@ int main()
             }
             else if(ret==-1)
             {
+                removeNode(list,temp->data);
                 temp = temp->next;
             }
             else
@@ -72,7 +73,7 @@ int main()
                 }
                 else
                 {
-                     printf("%s exited abnormally (%d)\n",temp->name,temp->data);
+                    printf("%s exited abnormally (%d)\n",temp->name,temp->data);
                 }
                 removeNode(list,temp->data);
                 temp = temp->next;

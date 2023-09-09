@@ -11,6 +11,7 @@ void peek(char* flag1,char* flag2,char* path);
 void seek(char* flag1, char* flag2,char* target,char* path);
 int is_peek_flag(char* token);
 int is_seek_flag(char* token);
+void activities(ListPtr list);
 int isSubstring(char* s1, char* s2);
 
 

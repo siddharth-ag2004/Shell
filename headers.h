@@ -46,6 +46,7 @@ extern int time_count;
 #include "peek.h"
 #include "seek.h"
 #include "parse.h"
+#include "activities.h"
 #include "execute.h"
 
 #endif

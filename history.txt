@@ -1,15 +1,15 @@
+peek
 
+activities
 
+sleep 5 &
+activities
 
+sleep 5
+sleep 5 &
+activities
 
+sleep 5 &
 
+p
 
-
-
-
-
-
-
-
-
-echo 1 |

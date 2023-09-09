@@ -62,7 +62,7 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             my_pipe(command,com_index,history_array,list);
         }
         else if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0) && (strcmp(command[0],"proclore")!=0) 
-        && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (index<=token_count) && (strcmp(tokens[index-1],";")==0))
+        && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (strcmp(command[0],"activities")!=0) && (index<=token_count) && (strcmp(tokens[index-1],";")==0))
         {
             int child = fork();
             if(child==0)
@@ -83,7 +83,7 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             // execvp(command[0],command);
         }
         else if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0)  && (strcmp(command[0],"proclore")!=0)
-        && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (index<=token_count) && (strcmp(tokens[index-1],"&")==0))
+        && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (strcmp(command[0],"activities")!=0) && (index<=token_count) && (strcmp(tokens[index-1],"&")==0))
         {
             int child = fork();
             if(child==0)
@@ -193,6 +193,10 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
                 }
             }
             
+        }
+        else if(strcmp(command[0],"activities")==0)
+        {
+            activities(list);
         }
         else
         {
