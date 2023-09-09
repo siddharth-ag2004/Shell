@@ -3,19 +3,21 @@
 void insertSpaces(char *str)    //inserts spaces before and after ; and &
 {
     int len = strlen(str);
-    char newStr[3*len];  // Increased size to accommodate additional spaces
+    char newStr[3*len+3];  // Increased size to accommodate additional spaces
     int j = 0;
 
     for (int i = 0; i < len; i++) 
     {
-        if ((str[i]==';' || str[i]=='&') && i-1>=0 && str[i-1] != ' ') 
+        if ((str[i]==';' || str[i]=='&' || str[i]=='|') && i-1>=0 && str[i-1] != ' ') 
+        //  if ((str[i]==';' || str[i]=='&') && i-1>=0 && str[i-1] != ' ')        
         {
             newStr[j++] = ' ';
         }
         
         newStr[j++] = str[i];
 
-        if ((str[i]==';' || str[i] == '&') && i+1<len && str[i+1]!=' ') 
+        if ((str[i]==';' || str[i] == '&'  || str[i]=='|') && i+1<len && str[i+1]!=' ') 
+        // if ((str[i]==';' || str[i] == '&') && i+1<len && str[i+1]!=' ') 
         {
             newStr[j++] = ' ';
         }
@@ -33,7 +35,8 @@ void add_semicolon_at_end(char *input)
     {
         if(input[i] != ' ' && input[i]!='\t' && input[i]!='\0' && input[i]!='\n') 
         {
-            if (input[i] != ';' && input[i]!= '&') 
+            // if(input[i] != ';' && input[i]!= '&' && input[i]!= '|') 
+            if(input[i] != ';' && input[i]!= '&') 
             {
                 strcat(input, " ;");
             }

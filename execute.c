@@ -1,5 +1,15 @@
 #include "headers.h"
 
+int containsPipe(char** command,int com_index)
+{
+    for(int i=0;i<com_index;i++)
+    {
+        if(strcmp(command[i],"|")==0)
+            return 1;
+    }
+    return 0;
+}
+
 void execute(char** tokens,int token_count,char** history_array,ListPtr list)
 {
     int index = 0;
@@ -12,6 +22,7 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
         }
         // printf("%d:  ",index);
         int com_index = 0;
+        // while((index < token_count) && (strcmp(tokens[index],";")!=0) && (strcmp(tokens[index],"&")!=0) && (strcmp(tokens[index],"|")!=0))
         while((index < token_count) && (strcmp(tokens[index],";")!=0) && (strcmp(tokens[index],"&")!=0))
         {
             strcpy(command[com_index++],tokens[index++]);
@@ -23,27 +34,76 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             perror("syntax error");
             return;
         }
-        if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0) && (strcmp(command[0],"proclore")!=0) 
+        if(com_index>=3)
+        {
+            if(strcmp(command[com_index-2],">") == 0)
+            {
+                redirect(command,com_index,1,history_array,list);
+                return ;
+            }
+            if(strcmp(command[com_index-2],">>") == 0)
+            {
+                redirect(command,com_index,2,history_array,list);
+                return ;
+            }
+            if(strcmp(command[com_index-2],"<") == 0)    
+            {
+                redirect(command,com_index,3,history_array,list);
+                return ;
+            }
+        }
+        // if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0) && (strcmp(command[0],"proclore")!=0) 
+        // && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (index<=token_count) && (strcmp(tokens[index-1],"|")==0))
+        // {
+        //     printf("yess\n");
+        //     int pipefd[2];
+
+        //     if (pipe(pipefd) == -1) 
+        //     {   
+        //         perror("pipe");
+        //         return ;
+        //     }
+
+        //     int child = fork();
+        //     // int restore_out = dup(STDOUT_FILENO);
+        //             // int restore_in = dup(STDIN_FILENO);
+
+        //     if (child == 0) // Child process
+        //     {
+        //         printf("yes\n");
+        //         close(pipefd[0]);
+        //         dup2(pipefd[1], STDOUT_FILENO);
+        //         close(pipefd[1]);   
+        //         execvp(command[0],command   );
+        //         // perror("execvp");
+        //         // exit(1);
+        //     }
+        //     else if (child == -1)
+        //     {
+        //         perror("fork");
+        //         return ;
+        //     }
+        //     else // Parent process
+        //     {
+        //         int status;
+        //         close(pipefd[1]); // Close the write end of the pipe in the parent
+        //         dup2(pipefd[0], STDIN_FILENO); // Redirect standard input to the read end of the pipe
+        //         dup2(restore_out, STDOUT_FILENO);
+        //         waitpid(child, &status, 0);     
+        //     }
+        // }
+        if(containsPipe(command,com_index))
+        {
+            // for(int i=0;i<com_index;i++)
+            // {
+            //     printf("y%sy ",command[i]);
+            // }
+            // printf("\n");
+            my_pipe(command,com_index,history_array,list);
+        }
+        else if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0) && (strcmp(command[0],"proclore")!=0) 
         && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (index<=token_count) && (strcmp(tokens[index-1],";")==0))
         {
-            if(com_index>=3)
-            {
-                if(strcmp(command[com_index-2],">") == 0)
-                {
-                    redirect(command,com_index,1,history_array,list);
-                    return ;
-                }
-                if(strcmp(command[com_index-2],">>") == 0)
-                {
-                    redirect(command,com_index,2,history_array,list);
-                    return ;
-                }
-                if(strcmp(command[com_index-2],"<") == 0)
-                {
-                    redirect(command,com_index,3,history_array,list);
-                    return ;
-                }
-            }
             int child = fork();
             if(child==0)
             {

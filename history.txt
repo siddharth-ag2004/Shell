@@ -1,15 +1,15 @@
-seek check
-seek check check
-seek checl
-seek check
-seek warp
-seek checl
-seek check
-seek check check
-warp ..
-pwd
-warp -
-warp ..
-ls -l > test.txt
-echo hi >> test.txt
-wc < history.txt >> test.txt
+seek . / | wc
+seek . . | wc
+echo hello | sed 's/e/q/g'
+echo hello
+echo hello | wc
+echo hello | wc | wc | wc
+echo hello | sed
+echo hello | sed 's/l//g'
+exit
+echo hello | sed s/l//g > test
+echo helo|wc
+ls &
+
+ls &
+

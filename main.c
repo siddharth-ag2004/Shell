@@ -66,7 +66,14 @@ int main()
             else
             {
                 // printf("Process %d exited normally\n",temp->data);
-                printf("%s exited normally (%d)\n",temp->name,temp->data);
+                if(WIFEXITED(status))
+                {
+                    printf("%s exited normally (%d)\n",temp->name,temp->data);
+                }
+                else
+                {
+                     printf("%s exited abnormally (%d)\n",temp->name,temp->data);
+                }
                 removeNode(list,temp->data);
                 temp = temp->next;
             }

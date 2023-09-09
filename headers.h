@@ -39,6 +39,7 @@ extern int time_count;
 #include "prompt.h"
 #include "warp.h"
 #include "list.h"
+#include "pipe.h"
 #include "redirect.h"
 #include "pastevents.h"
 #include "proclore.h"

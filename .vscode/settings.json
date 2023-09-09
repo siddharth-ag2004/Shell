@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "list.h": "c",
-        "pastevents.h": "c"
+        "pastevents.h": "c",
+        "redirect.h": "c"
     }
 }

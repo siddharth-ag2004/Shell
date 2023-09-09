@@ -15,7 +15,7 @@ void redirect(char** command,int com_index,int direction,char** history_array,Li
     {
         if (fd < 0) 
         { 
-            perror("Error opening file.");
+            perror("No such input file found!");
             return;
         }
             

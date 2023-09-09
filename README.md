@@ -22,3 +22,5 @@
 9. Exit command has not been handled yet as that is not a specification.
 
 10. peek - has been assumed to be a valid command and is equivalent to the ls of the previous directory.
+
+11. I/O redirection cannot run as a background process.
