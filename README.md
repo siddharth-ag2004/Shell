@@ -24,3 +24,5 @@
 10. peek - has been assumed to be a valid command and is equivalent to the ls of the previous directory.
 
 11. I/O redirection cannot run as a background process.
+
+12. Piping is expected to run as a foreground process only(cannot be followed by &).
