@@ -57,7 +57,7 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
                 return ;
             }
         }
-        if(pipe_flag ==1)
+        if(pipe_flag == 1)
         {
             my_pipe(command,com_index,history_array,list);
         }

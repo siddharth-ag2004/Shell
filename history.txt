@@ -1,15 +1,15 @@
-echo 1 | wc
-echo hello | wc < parse.c
-echo hell
-wc < parse.c
-cat parse.c
-cat parse.c | wc
-echo 1 | wc
-echo hello | wc < parse.c
-peek
-echo hello | wc < parse.c
-ls
-peek -la
-ls
-ls =la
-ls -la
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+echo 1 |

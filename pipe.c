@@ -14,6 +14,11 @@ void pipe_execute(char** command,int* semicolon_indices,int idx,int input, int o
         close (output);
     }
     int num_elements = semicolon_indices[idx + 1] - semicolon_indices[idx] - (idx!=0);
+    if(num_elements==0)
+    {
+        perror("Invalid use of pipe.");
+        return;
+    }
     char** command_copy = malloc((num_elements + 1) * sizeof(char*));
     for(int i=0;i<num_elements+1;i++)
     {
@@ -30,6 +35,11 @@ void pipe_execute(char** command,int* semicolon_indices,int idx,int input, int o
 
 void my_pipe(char** command,int com_index,char** history_array,ListPtr list)
 {
+    if(strcmp(command[com_index-1],"|")==0)
+    {
+        perror("Invalid use of pipe.");
+        return;
+    }
     int pipefd[2];
     int no_commands = 1;
     for(int i=0;i<com_index;i++)
@@ -72,6 +82,11 @@ void my_pipe(char** command,int com_index,char** history_array,ListPtr list)
     int num_elements;
     num_elements = semicolon_indices[no_commands] -semicolon_indices[no_commands-1]-1;
 
+    if(num_elements==0)
+    {
+        perror("Invalid use of pipe.");
+        return;
+    }
 
     char** command_copy = malloc((num_elements+1)*sizeof(char*));
     for(int i=0;i<num_elements+1;i++)
