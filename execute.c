@@ -44,17 +44,17 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             if(strcmp(command[com_index-2],">") == 0)
             {
                 redirect(command,com_index,1,history_array,list);
-                return ;
+                break ;
             }
             if(strcmp(command[com_index-2],">>") == 0)
             {
                 redirect(command,com_index,2,history_array,list);
-                return ;
+                break ;
             }
             if(strcmp(command[com_index-2],"<") == 0)    
             {
                 redirect(command,com_index,3,history_array,list);
-                return ;
+                break ;
             }
         }
         if(pipe_flag == 1)
