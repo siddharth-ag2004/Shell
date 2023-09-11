@@ -4,10 +4,10 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h> 
-#include <sys/utsname.h>
-#include <pwd.h>
-#include <sys/types.h>
-#include <linux/limits.h>
+#include<sys/utsname.h>
+#include<pwd.h>
+#include<sys/types.h>
+#include<linux/limits.h>
 #include<string.h>
 #include<libgen.h>
 #include<sys/wait.h>
@@ -17,6 +17,8 @@
 #include<dirent.h>
 #include<time.h>
 #include<grp.h>
+#include<signal.h>
+#include<termios.h>
 
 #define MAX_TOKENS 100
 #define MAX_TOKEN_LENGTH 200
@@ -35,6 +37,8 @@ extern char last_dir[PATH_MAX];
 extern char commandline_input[MAX_TOKEN_LENGTH];
 extern int history_index;
 extern int time_count;
+extern char *input;
+extern int pt;
 
 #include "prompt.h"
 #include "warp.h"
@@ -47,6 +51,7 @@ extern int time_count;
 #include "seek.h"
 #include "parse.h"
 #include "activities.h"
+#include "signals.h"
 #include "execute.h"
 
 #endif

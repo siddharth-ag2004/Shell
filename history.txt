@@ -1,15 +1,15 @@
-echo hello > test.txt | echo one
-echo hello >> test.txt ; echo 1 | wc
 echo 1
-echo 1 | wc
-echo onec >> test.txt
-echo once >> test.txt
-echo hi >> test.txt
-echo new >> test.txt
-echo newone >> test.txt | echo hello | wc
-echo newone >> test.txt ; 
-echo newone >> tes.txt ; echo hello | wc
-echo hello >> new.txt | echo hello | wc
-echo  1 >> test.txt | echo hi | wc ; echo 2 >> test.txt
-echo >>new.txt
-echo >> new.txt
+peek -la
+echo new > test.txt
+clear
+make
+echo nwe
+echo new | wc
+seek se
+sleep 100 &
+activities
+ping 8058 9
+activities
+clear
+echo 1
+make

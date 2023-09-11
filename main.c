@@ -6,6 +6,19 @@ char last_dir[PATH_MAX];
 char commandline_input[MAX_TOKEN_LENGTH];
 int history_index;
 int time_count=0;
+int pt;
+char *input = NULL;
+
+void INThandler(int sig)
+{
+    signal(sig, SIG_IGN);
+    
+    printf("\n");
+    pt = 0;
+    input[0] = '\0';
+    prompt();
+}
+
 
 int main()
 {
@@ -43,12 +56,15 @@ int main()
     }
     fclose(file);
     history_index = 0;
-    
+    input = malloc(sizeof(char)*100);
+    // input[0] = '\0';
     // strcpy(cwd,"osn");
     while (1)
     {
         // strcpy(last_dir,cwd);
         prompt();
+        // enableRawMode();
+        signal(SIGINT, INThandler);
         ListPtr temp = list;
         temp=temp->next;
         while(temp!=NULL)
@@ -79,10 +95,10 @@ int main()
                 temp = temp->next;
             }
         }
-        char input[4096];
-        fgets(input, 4096, stdin);
-        
-        input[strlen(input)-1] = '\0';
+        // char input[4096];
+        // fgets(input, 4096, stdin);
+        input_in_rawmode();
+
         strcpy(commandline_input,input);
         time_t initial_time;
         time(&initial_time);
