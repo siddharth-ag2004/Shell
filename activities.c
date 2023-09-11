@@ -42,20 +42,55 @@ void activities(ListPtr list)
     for(int i=0;i<list_len;i++)
     {
         char* state = (char*)malloc(sizeof(char)*50);
-        int status;
-        int ret = waitpid(Sorted_processes[i]->data, &status, WNOHANG);
-        if(ret==0)
-        {   
-            strcpy(state,"Running");
-        }
-        else if(ret == -1)
+        // int status;
+        // int ret = waitpid(Sorted_processes[i]->data, &status, WNOHANG);
+        char proc_status_path[PATH_MAX];
+        snprintf(proc_status_path, sizeof(proc_status_path), "/proc/%d/status" ,Sorted_processes[i]->data);
+        FILE* status_file = fopen(proc_status_path, "r");
+        char line[256];
+        while (fgets(line, sizeof(line), status_file)) 
         {
-            strcpy(state,"Error in process status");
+            if (strncmp(line, "State:", 6) == 0) 
+            {
+                const char *property = line + 7; 
+                const char *status_end = strchr(property, ' ');
+                if (status_end == NULL)
+                {
+                    status_end = line + strlen(line);
+                }
+
+                int status_length = status_end - property;
+                char status[status_length + 1];
+
+                strncpy(status, property, status_length);
+                status[status_length] = '\0';
+                if(strcmp(status,"T")==0)
+                {   
+                    strcpy(state,"Stopped");
+                }
+                // else if(ret == -1)
+                // {
+                //     strcpy(state,"Error in process status");
+                // }
+                else
+                {
+                    strcpy(state,"Running");
+                }
+                printf("%d : %s - %s\n",Sorted_processes[i]->data,Sorted_processes[i]->name,state);
+            }
         }
-        else
-        {
-            strcpy(state,"Stopped");
-        }
-        printf("%d : %s - %s\n",Sorted_processes[i]->data,Sorted_processes[i]->name,state);
+        fclose(status_file);
+        // if(ret==0)
+        // {   
+        //     strcpy(state,"Running");
+        // }
+        // else if(ret == -1)
+        // {
+        //     strcpy(state,"Error in process status");
+        // }
+        // else
+        // {
+        //     strcpy(state,"Stopped");
+        // }
     }
 }

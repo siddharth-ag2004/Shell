@@ -3,5 +3,6 @@
         "list.h": "c",
         "pastevents.h": "c",
         "redirect.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "enabled"
 }

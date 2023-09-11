@@ -2,6 +2,8 @@
 #define __EXECUTE_H
 
 void execute(char** tokens,int token_count,char** history_array,ListPtr list);
+void make_fg_process(int pid);
+void make_fg_parent();
 void parse(char* input,char** history_array,ListPtr list);
 void pastevents(char** history_array,const char* flag,const char* process,ListPtr list);
 void my_pipe(char** command,int com_index,char** history_array,ListPtr list);
@@ -13,6 +15,8 @@ int is_peek_flag(char* token);
 int is_seek_flag(char* token);
 void activities(ListPtr list);
 void ping(char* pid_str,char* signal_number_str);
+void bg(char* pid_str);
+void fg(char* pid_str);
 int isSubstring(char* s1, char* s2);
 
 

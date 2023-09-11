@@ -39,6 +39,7 @@ extern int history_index;
 extern int time_count;
 extern char *input;
 extern int pt;
+extern int curr_fg;
 
 #include "prompt.h"
 #include "warp.h"
@@ -52,6 +53,7 @@ extern int pt;
 #include "parse.h"
 #include "activities.h"
 #include "signals.h"
+#include "headers.h"
 #include "execute.h"
 
 #endif

@@ -8,15 +8,19 @@ int history_index;
 int time_count=0;
 int pt;
 char *input = NULL;
+int curr_fg;
+
 
 void INThandler(int sig)
 {
-    signal(sig, SIG_IGN);
-    
-    printf("\n");
+    // signal(sig, SIG_IGN);    
     pt = 0;
     input[0] = '\0';
-    prompt();
+    if(curr_fg==0)
+    {
+        printf("\n");
+        prompt();
+    }
 }
 
 
@@ -57,14 +61,20 @@ int main()
     fclose(file);
     history_index = 0;
     input = malloc(sizeof(char)*100);
-    // input[0] = '\0';
-    // strcpy(cwd,"osn");
+    struct sigaction action;
+    // memset(&action, 0, sizeof(action));
+    action.sa_handler = INThandler;
+    action.sa_flags = SA_RESTART;
+    sigaction(SIGINT, &action, NULL);
+    signal(SIGTSTP,SIG_IGN);
     while (1)
     {
         // strcpy(last_dir,cwd);
+        // signal(SIGINT, INThandler);
+        // if(curr_fg == 0)
         prompt();
+
         // enableRawMode();
-        signal(SIGINT, INThandler);
         ListPtr temp = list;
         temp=temp->next;
         while(temp!=NULL)

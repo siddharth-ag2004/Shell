@@ -1,15 +1,15 @@
-echo 1
-peek -la
-echo new > test.txt
-clear
+fg 19126
+
+peek -la; echo hiiiiiii;sleep 1; seek;warp ..
+seek
+echo 1 ;peek -la; sleep 1; seek;seek . re ;warp ..
+sleep 1 & sleep 2 & sleep 3 & sleep 4 &
+
+warp ..
 make
-echo nwe
-echo new | wc
-seek se
-sleep 100 &
+warp ~
+sleep 10
 activities
-ping 8058 9
+warp 
 activities
-clear
-echo 1
-make
+fg 24983

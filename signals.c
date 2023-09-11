@@ -5,14 +5,22 @@ void ping(char* pid_str,char* signal_number_str)
     pid_t pid = atoi(pid_str);
     int sig_num = atoi(signal_number_str);
     sig_num%=32;
-    kill(pid,sig_num);
+    int ret = kill(pid,sig_num);
+    if(ret!=0)
+    {
+        perror("No such process found");
+    }
+    else
+    {
+        printf("Sent signal %d to process with pid %d\n",sig_num,pid);
+    }
 }
 
 struct termios orig_termios;
 
 void die(const char *s) {
-    perror(s);
-    exit(1);
+    // perror(s);
+    // exit(1);
 }
 
 void disableRawMode() {

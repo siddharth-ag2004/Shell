@@ -64,12 +64,15 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
         }
         else if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0) && (strcmp(command[0],"proclore")!=0) 
         && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (strcmp(command[0],"ping")!=0) 
-        && (strcmp(command[0],"activities")!=0) && (index<=token_count) && (strcmp(tokens[index-1],";")==0))
+        && (strcmp(command[0],"activities")!=0) && (strcmp(command[0],"bg")!=0) && (strcmp(command[0],"fg")!=0) 
+        && (index<=token_count) && (strcmp(tokens[index-1],";")==0))
         {
             int child = fork();
             if(child==0)
             {
+                setpgid(0,0);
                 signal(SIGINT, SIG_DFL);
+                signal(SIGTSTP, SIG_DFL);
                 execvp(command[0],command);
                 perror("Invalid command");
                 exit(1);
@@ -81,18 +84,30 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             else
             {
                 int status;
-                waitpid(child, &status, 0);
+                curr_fg = 1;
+                make_fg_process(child);
+                waitpid(child, &status, WUNTRACED);
+                if (WIFSTOPPED(status))
+                {
+                    addNode(list, child, command[0]);
+                }
+				make_fg_parent();
+
+                curr_fg = 0;
             }
             // execvp(command[0],command);
         }
         else if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0)  && (strcmp(command[0],"proclore")!=0)
         && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (strcmp(command[0],"ping")!=0) 
-        && (strcmp(command[0],"activities")!=0) && (index<=token_count) && (strcmp(tokens[index-1],"&")==0))
+        && (strcmp(command[0],"activities")!=0) && (strcmp(command[0],"bg")!=0) && (strcmp(command[0],"fg")!=0)
+        && (index<=token_count) && (strcmp(tokens[index-1],"&")==0))
         {
             int child = fork();
             if(child==0)
             {
+                setpgid(0,0);
                 signal(SIGINT, SIG_DFL);
+                signal(SIGTSTP, SIG_DFL);
                 execvp(command[0],command);
                 perror("Invalid command");
                 exit(1);
@@ -160,6 +175,11 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
         }
         else if(strcmp(command[0],"seek")==0)
         { 
+            if(command[1]==NULL)
+            {
+                perror("Invalid syntax of seek");
+                continue;
+            }
             if(!is_seek_flag(command[1]))
             {
                 seek(NULL,NULL,command[1],command[2]);
@@ -214,9 +234,28 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
                 ping(command[1],command[2]);
             }
         }
+        else if(strcmp(command[0],"bg")==0)
+        {
+            if(command[1]==NULL)
+            {
+                perror("Wrong syntax of bg command");
+                continue;
+            }
+            bg(command[1]);
+        }
+        else if(strcmp(command[0],"fg")==0)
+        {
+            if(command[1]==NULL)
+            {
+                perror("Wrong syntax of fg command");
+                continue;
+            }
+            fg(command[1]);
+        }
         else
         {
             perror("Invalid command");
+            continue;
         }
     }
 }

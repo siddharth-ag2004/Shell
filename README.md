@@ -26,3 +26,5 @@
 11. I/O redirection cannot run as a background process.
 
 12. Piping is expected to run as a foreground process only(cannot be followed by &).
+
+13. For activities, only background processes in the T state are considered to be stopped.
