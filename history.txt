@@ -1,5 +1,3 @@
-
-provlore 43-76
 proclore 43076
 peek -la
 peek -l -a
@@ -12,4 +10,6 @@ peek -l -a ..
 peek -la
 peek -l ..
 peek -l ../..
+neonate -n 1
+echo 1
 neonate -n 1

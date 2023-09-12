@@ -34,3 +34,47 @@
 15. Pastevents execute is not considered to be part of pipe.
 
 16. For iMan any text enclosed within "<" and ">" is not printed, and the text only from the second "NAME" string is printed.
+
+
+Structure:
+
+.
+├── activities.c (implemented activities command)
+├── activities.h
+├── a.out
+├── execute.c    (parsed input in form of array is further distributed based on ; and & and each individual command is sent to its
+                  respective function(or execvp if its a system call))
+├── execute.h
+├── fg_bg.c      ((implemented fg,bg command))
+├── fg_bg.h
+├── headers.h   (contains all libraries and files included in the codebase. Also global variables declared here)
+├── history.txt
+├── iMan.c      (implemented iMan command)
+├── iMan.h
+├── list.c      (basic linked list functions)
+├── list.h
+├── main.c      (taking of user input,loading history into array from history.txt)
+├── makefile
+├── neonate.c   (implemented neonate command)
+├── neonate.h
+├── parse.c     (parsing of input given by user based on spaces)
+├── parse.h
+├── pastevents.c (implemented pastevents command(including purge and execute))
+├── pastevents.h
+├── peek.c      (implemented peek command)
+├── peek.h
+├── pipe.c      (implemented pipe command)
+├── pipe.h
+├── proclore.c  (implemented proclore command)
+├── proclore.h
+├── prompt.c    (printing required prompt for user)
+├── prompt.h
+├── README.md
+├── redirect.c  (implemented redirect options (>,<,>>))
+├── redirect.h
+├── seek.c      (implemented seek command)
+├── seek.h
+├── signals.c   (implemented raw mode boilerplate and ping command)
+├── signals.h
+├── warp.c      (implemented warp command)
+└── warp.h
