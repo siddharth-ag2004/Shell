@@ -85,13 +85,13 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             {
                 int status;
                 curr_fg = 1;
-                make_fg_process(child);
+                child_handler(child);
                 waitpid(child, &status, WUNTRACED);
                 if (WIFSTOPPED(status))
                 {
                     addNode(list, child, command[0]);
                 }
-				make_fg_parent();
+				parent_handler();
 
                 curr_fg = 0;
             }

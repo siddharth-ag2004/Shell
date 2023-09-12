@@ -1,6 +1,6 @@
 #include "headers.h"
 
-void make_fg_process(pid_t pid)
+void child_handler(int pid)
 {
     setpgid(pid, 0);
     signal(SIGTTIN, SIG_IGN);
@@ -8,7 +8,8 @@ void make_fg_process(pid_t pid)
     tcsetpgrp(STDIN_FILENO, pid);
 }
 
-void make_fg_parent(){
+void parent_handler()
+{
     tcsetpgrp(STDIN_FILENO, getpgid(0));    
     signal(SIGTTIN, SIG_DFL);
     signal(SIGTTOU, SIG_DFL);
@@ -17,6 +18,10 @@ void make_fg_parent(){
 void bg(char* pid_str)
 {
     int pid = atoi(pid_str);
+    if(pid==0)
+    {
+        perror("Valid pid not found");
+    }
     int ret = kill(pid,SIGCONT);
     if(ret!=0)
     {
@@ -27,13 +32,17 @@ void bg(char* pid_str)
 void fg(char* pid_str)
 {
     int pid = atoi(pid_str);
+    if(pid==0)
+    {
+        perror("Valid pid not found");
+    }
     int r = kill(pid,SIGCONT);
     if(r!=0)
     {
         perror("No such process found");
     }
-    make_fg_process(pid);
+    child_handler(pid);
     int status;
     int ret = waitpid(pid,&status,WUNTRACED);
-    make_fg_parent();
+    parent_handler();
 }

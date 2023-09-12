@@ -1,9 +1,9 @@
-#ifndef __WARP_H
-#define __WARP_H
+#ifndef __FG_BG_H
+#define __FG_BG_H
 
 void bg(char* pid_str);
 void fg(char* pid_str);
-void make_fg_process(int pid);
-void make_fg_parent();
+void child_handler(int pid);
+void parent_handler();
 
 #endif

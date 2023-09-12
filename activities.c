@@ -68,10 +68,6 @@ void activities(ListPtr list)
                 {   
                     strcpy(state,"Stopped");
                 }
-                // else if(ret == -1)
-                // {
-                //     strcpy(state,"Error in process status");
-                // }
                 else
                 {
                     strcpy(state,"Running");
@@ -80,17 +76,5 @@ void activities(ListPtr list)
             }
         }
         fclose(status_file);
-        // if(ret==0)
-        // {   
-        //     strcpy(state,"Running");
-        // }
-        // else if(ret == -1)
-        // {
-        //     strcpy(state,"Error in process status");
-        // }
-        // else
-        // {
-        //     strcpy(state,"Stopped");
-        // }
     }
 }

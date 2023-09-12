@@ -2,8 +2,8 @@
 #define __EXECUTE_H
 
 void execute(char** tokens,int token_count,char** history_array,ListPtr list);
-void make_fg_process(int pid);
-void make_fg_parent();
+void child_handler(int pid);
+void parent_handler();
 void parse(char* input,char** history_array,ListPtr list);
 void pastevents(char** history_array,const char* flag,const char* process,ListPtr list);
 void my_pipe(char** command,int com_index,char** history_array,ListPtr list);
