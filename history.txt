@@ -1,15 +1,15 @@
-fg 19126
+echo 1 | wc | hello 
 
-peek -la; echo hiiiiiii;sleep 1; seek;warp ..
-seek
-echo 1 ;peek -la; sleep 1; seek;seek . re ;warp ..
-sleep 1 & sleep 2 & sleep 3 & sleep 4 &
+neonate -n 1
 
-warp ..
-make
-warp ~
-sleep 10
-activities
-warp 
-activities
-fg 24983
+neonate -n 2
+clear
+echo 1 
+echo 1 | wc
+sleep 10 &
+fg 147-3
+fg 14703
+echo hi | cat < history.txt
+echo 1
+echo 1 | wc
+neonate -n 1

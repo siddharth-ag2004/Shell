@@ -52,6 +52,8 @@ extern int curr_fg;
 #include "seek.h"
 #include "parse.h"
 #include "activities.h"
+#include "fg_bg.h"
+#include "neonate.h"
 #include "signals.h"
 #include "headers.h"
 #include "execute.h"

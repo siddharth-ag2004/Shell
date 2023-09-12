@@ -4,14 +4,14 @@ void pipe_execute(char** command,int* semicolon_indices,int idx,int input, int o
 {
     if (input != 0)
     {
-        dup2 (input, 0);
-        close (input);
+        dup2(input, 0);
+        close(input);
     }
 
     if (output != 1)
     {
-        dup2 (output, 1);
-        close (output);
+        dup2(output, 1);
+        close(output);
     }
     int num_elements = semicolon_indices[idx + 1] - semicolon_indices[idx] - (idx!=0);
     if(num_elements==0)

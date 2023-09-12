@@ -2,7 +2,8 @@
     "files.associations": {
         "list.h": "c",
         "pastevents.h": "c",
-        "redirect.h": "c"
+        "redirect.h": "c",
+        "fg_bg.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

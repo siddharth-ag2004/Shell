@@ -65,7 +65,7 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
         else if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0) && (strcmp(command[0],"proclore")!=0) 
         && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (strcmp(command[0],"ping")!=0) 
         && (strcmp(command[0],"activities")!=0) && (strcmp(command[0],"bg")!=0) && (strcmp(command[0],"fg")!=0) 
-        && (index<=token_count) && (strcmp(tokens[index-1],";")==0))
+        && (strcmp(command[0],"neonate")!=0) && (index<=token_count) && (strcmp(tokens[index-1],";")==0))
         {
             int child = fork();
             if(child==0)
@@ -99,8 +99,8 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
         }
         else if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0)  && (strcmp(command[0],"proclore")!=0)
         && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (strcmp(command[0],"ping")!=0) 
-        && (strcmp(command[0],"activities")!=0) && (strcmp(command[0],"bg")!=0) && (strcmp(command[0],"fg")!=0)
-        && (index<=token_count) && (strcmp(tokens[index-1],"&")==0))
+        && (strcmp(command[0],"activities")!=0) && (strcmp(command[0],"bg")!=0) && (strcmp(command[0],"fg")!=0) 
+        && (strcmp(command[0],"neonate")!=0) && (index<=token_count) && (strcmp(tokens[index-1],"&")==0))
         {
             int child = fork();
             if(child==0)
@@ -251,6 +251,22 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
                 continue;
             }
             fg(command[1]);
+        }
+        else if(strcmp(command[0],"neonate")==0)
+        {
+            if(command[1]==NULL || strcmp(command[1],"-n")!=0 || command[2]==NULL)
+            {
+                perror("Wrong syntax of neonate command");
+                continue;
+            }
+            int oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+            fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+
+            enableRawMode();
+            neonate(command[2]);
+            disableRawMode();
+
+            fcntl(STDIN_FILENO, F_SETFL, oldf);
         }
         else
         {

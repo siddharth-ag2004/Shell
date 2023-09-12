@@ -17,6 +17,7 @@ void activities(ListPtr list);
 void ping(char* pid_str,char* signal_number_str);
 void bg(char* pid_str);
 void fg(char* pid_str);
+void neonate(char* time_str);
 int isSubstring(char* s1, char* s2);
 
 
