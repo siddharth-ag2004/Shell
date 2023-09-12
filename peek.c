@@ -201,7 +201,7 @@ void peek(char* flag1 ,char* flag2 ,char* path)
             }
 
             qsort(store_strings,idx,sizeof(char*),cmpf_string);
-
+            printf("total %d\n",4*idx);
             for (int i=0;i<idx;i++) 
             {
                 char* absolute_path_string = (char*)malloc(sizeof(char)*PATH_MAX); 
