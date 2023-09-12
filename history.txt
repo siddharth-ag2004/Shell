@@ -1,15 +1,15 @@
-fg 25753
-
-neonate -n 2
-neonate -n 3
-neonate -n -5
-neonate 10
-neonate -n 5
-neonate -n 1
-neonate -n 2
-echo 1
-iMan ls
-iMan sleep
-iMan sl
 iMan p
 clear
+neonate -n 0
+neonate -n 1
+neonate -n 0
+clear
+neonate -n 1
+neonate -n 2
+clear
+neonate -n 2
+neonate -n 1
+neonate -n 0
+clear
+neonate -n 1
+neonate -n 0
