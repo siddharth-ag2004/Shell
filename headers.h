@@ -19,6 +19,10 @@
 #include<grp.h>
 #include<signal.h>
 #include<termios.h>
+#include<arpa/inet.h>
+#include<netdb.h>
+#include<sys/socket.h>
+
 
 #define MAX_TOKENS 100
 #define MAX_TOKEN_LENGTH 200
@@ -54,6 +58,7 @@ extern int curr_fg;
 #include "activities.h"
 #include "fg_bg.h"
 #include "neonate.h"
+#include "iMan.h"
 #include "signals.h"
 #include "headers.h"
 #include "execute.h"

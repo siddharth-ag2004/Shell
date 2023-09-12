@@ -3,12 +3,24 @@
 void ping(char* pid_str,char* signal_number_str)
 {
     pid_t pid = atoi(pid_str);
+    if(pid==0)
+    {
+        perror("Invalid pid");
+        return;
+    }
     int sig_num = atoi(signal_number_str);
     sig_num%=32;
+    int check = kill(pid,0);
+    if(check == -1)
+    {
+        perror("Invalid pid");
+        return;
+    }
+
     int ret = kill(pid,sig_num);
     if(ret!=0)
     {
-        perror("No such process found");
+        perror("Could not ping given pid with required signal");
     }
     else
     {

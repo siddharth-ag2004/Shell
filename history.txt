@@ -1,15 +1,15 @@
-echo 1 | wc | hello 
-
-neonate -n 1
+fg 25753
 
 neonate -n 2
-clear
-echo 1 
-echo 1 | wc
-sleep 10 &
-fg 147-3
-fg 14703
-echo hi | cat < history.txt
-echo 1
-echo 1 | wc
+neonate -n 3
+neonate -n -5
+neonate 10
+neonate -n 5
 neonate -n 1
+neonate -n 2
+echo 1
+iMan ls
+iMan sleep
+iMan sl
+iMan p
+clear

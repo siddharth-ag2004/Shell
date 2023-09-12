@@ -63,7 +63,7 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             my_pipe(command,com_index,history_array,list);
         }
         else if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0) && (strcmp(command[0],"proclore")!=0) 
-        && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (strcmp(command[0],"ping")!=0) 
+        && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (strcmp(command[0],"ping")!=0) && (strcmp(command[0],"iMan")!=0) 
         && (strcmp(command[0],"activities")!=0) && (strcmp(command[0],"bg")!=0) && (strcmp(command[0],"fg")!=0) 
         && (strcmp(command[0],"neonate")!=0) && (index<=token_count) && (strcmp(tokens[index-1],";")==0))
         {
@@ -98,7 +98,7 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             // execvp(command[0],command);
         }
         else if((strcmp(command[0],"warp")!=0) && (strcmp(command[0],"pastevents")!=0)  && (strcmp(command[0],"proclore")!=0)
-        && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (strcmp(command[0],"ping")!=0) 
+        && (strcmp(command[0],"peek")!=0) && (strcmp(command[0],"seek")!=0) && (strcmp(command[0],"ping")!=0)  && (strcmp(command[0],"iMan")!=0) 
         && (strcmp(command[0],"activities")!=0) && (strcmp(command[0],"bg")!=0) && (strcmp(command[0],"fg")!=0) 
         && (strcmp(command[0],"neonate")!=0) && (index<=token_count) && (strcmp(tokens[index-1],"&")==0))
         {
@@ -267,6 +267,15 @@ void execute(char** tokens,int token_count,char** history_array,ListPtr list)
             disableRawMode();
 
             fcntl(STDIN_FILENO, F_SETFL, oldf);
+        }
+        else if(strcmp(command[0],"iMan")==0)
+        {
+            if(command[1]==NULL)
+            {
+                perror("Please enter which command to iMan");
+                continue;
+            }
+            iMan(command[1]);
         }
         else
         {
