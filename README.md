@@ -27,4 +27,10 @@
 
 12. Piping is expected to run as a foreground process only(cannot be followed by &).
 
-13. For activities, only background processes in the T state are considered to be stopped.
+13. For activities, only background processes in the T state are considered to be stopped(Z state processes are considered to be running).
+
+14. In pastevents the empty string is not dislplayed when pastevents is run, however pastevents execute considers it to be a valid command.
+
+15. Pastevents execute is not considered to be part of pipe.
+
+16. For iMan any text enclosed within "<" and ">" is not printed, and the text only from the second "NAME" string is printed.
